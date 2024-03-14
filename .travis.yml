@@ -9,14 +9,14 @@ script:
   - docker run -e CI=true saybar/react-test npm test
 
 after_success:
-  - docker build -t saybar/multi-client ./client2
+  - docker build -t saybar/multi-client2 ./client2
   - docker build -t saybar/multi-nginx ./nginx
   - docker build -t saybar/multi-server ./server
   - docker build -t saybar/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     # Take those iamges and push them to docker hub
-  - docker push saybar/multi-client
+  - docker push saybar/multi-client2
   - docker push saybar/multi-nginx
   - docker push saybar/multi-server
   - docker push saybar/multi-worker
